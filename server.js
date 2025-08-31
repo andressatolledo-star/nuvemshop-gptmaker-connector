@@ -60,6 +60,8 @@ app.get("/gptmaker/inbound", (req, res) => {
 // // MCP inbound (GPT Maker)
 app.post("/gptmaker/inbound", async (req, res) => {
 //
+    try {
+
     const { message } = req.body || {};
     if (!message) return res.json({ reply: "Envie: SKU: <seu-sku>" });
  const m = /sku\s*:\s*([A-Za-z0-9_.-]+)/i.exec(message);

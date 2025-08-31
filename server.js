@@ -53,13 +53,17 @@ app.post("/webhooks/store-redact", (req, res) => { console.log("LGPD store-redac
 app.post("/webhooks/customers-redact", (req, res) => { console.log("LGPD customers-redact", req.body); res.sendStatus(200); });
 app.post("/webhooks/customers-data-request", (req, res) => { console.log("LGPD customers-data-request", req.body); res.sendStatus(200); });
 
-// MCP inbound (GPT Maker)
+// 
+app.get("/gptmaker/inbound", (req, res) => {
+  return res.status(200).send("OK");
+});
+MCP inbound (GPT Maker)
 app.post("/gptmaker/inbound", async (req, res) => {
   try {
     const { message } = req.body || {};
     if (!message) return res.json({ reply: "Envie: SKU: <seu-sku>" });
 
-    const m = /sku\s*:\s*([A-Za-z0-9._-]+)/i.exec(message);
+   st m = /sku\s*:\s*([A-Za-z0-9._-]+)/i.exec(message);
     if (!m) return res.json({ reply: "Use: SKU: CONJ-BICOLOR-HOT-TAMANHO-COR" });
     const sku = m[1];
 
